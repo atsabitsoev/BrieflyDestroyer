@@ -16,6 +16,7 @@ class ViewController: UIViewController, WKUIDelegate {
 
     
     @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var tfSearch: UITextField!
     
     
     override func viewDidLoad() {
@@ -53,9 +54,9 @@ class ViewController: UIViewController, WKUIDelegate {
         
         //sendDestroyingRequest(sender.text)
         
+        guard let text = tfSearch.text else { return }
         
-        
-        webView.callJSMethod(name: "document.getElementById('h-search-q').value = ", agruments: "Кап") { (str, error) in
+        webView.callJSMethod(name: "document.getElementById('h-search-q').value = ", agruments: text) { (str, error) in
             print(error ?? str ?? "хз")
             self.webView.callJSMethod(name: "document.getElementById('h-search-q').focus") { (str, error) in
                 print(error ?? str ?? "fhelwkfjskle")
