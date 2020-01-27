@@ -74,9 +74,12 @@ class ViewController: UIViewController, WKUIDelegate {
                                 let firstSuggestion = try! doc.select("li")
                                 
                                 for element in firstSuggestion.array() {
+                                    guard try! element.attr("class") == "w" else { continue }
+                                    
                                     let author = try! element.select("span").text()
                                     let bookName = try! element.text().dropLast(try! author.count)
                                     print(bookName)
+                                    print(author)
                                 }
                                 
                             }
